@@ -7,7 +7,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.1
-Release:        11.10%{?dist}
+Release:        11.11%{?dist}
 Summary:        Java library to reliably execute external processes from within the JVM
 
 License:        ASL 2.0
@@ -17,7 +17,7 @@ Source0:        http://www.apache.org/dist/commons/%{base_name}/source/%{short_n
 BuildRequires:  iputils
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
 BuildRequires:  %{?scl_prefix_java_common}maven-local
-BuildRequires:  maven30-apache-commons-parent >= 26-7
+BuildRequires:  %{?scl_prefix}apache-commons-parent >= 26-7
 BuildArch:      noarch
 
 %description
@@ -34,7 +34,7 @@ This package contains the API documentation for %{pkg_name}.
 
 %prep
 %setup -q -n %{short_name}-%{version}-src
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 
 # Shell scripts used for unit tests must be executable (see
@@ -46,14 +46,14 @@ chmod a+x src/test/scripts/*.sh
 
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_build
 %{?scl:EOF}
 
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -67,6 +67,9 @@ set -e -x
 
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.1-11.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.1-11.10
 - maven33 rebuild
 
