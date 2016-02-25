@@ -7,7 +7,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.1
-Release:        11.11%{?dist}
+Release:        11.12%{?dist}
 Summary:        Java library to reliably execute external processes from within the JVM
 
 License:        ASL 2.0
@@ -16,7 +16,7 @@ Source0:        http://www.apache.org/dist/commons/%{base_name}/source/%{short_n
 
 BuildRequires:  iputils
 BuildRequires:  %{?scl_prefix_java_common}javapackages-tools
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix}apache-commons-parent >= 26-7
 BuildArch:      noarch
 
@@ -67,6 +67,9 @@ set -e -x
 
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.1-11.12
+- Fix BR on maven-local & co.
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.1-11.11
 - maven33 rebuild #2
 
